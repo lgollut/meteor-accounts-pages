@@ -1,0 +1,14 @@
+<template name="pageAccountButton">
+    {{#if currentUser}}
+        <div class="ui dropdown item">
+            <i class="icon user"></i> {{getuser}} <i class="icon dropdown"></i>
+            <div class="menu">
+                <a class="item"><i class="edit icon"></i> Edit Profile</a>
+                <a class="item"><i class="settings icon"></i> Account Settings</a>
+                <a class="item" href="{{pathFor 'signOut'}}"><i class="sign out icon"></i> Sign out</a>
+            </div>
+        </div>
+    {{else}}
+        <a class="{{activeRouteClass 'signIn' 'signUp' 'forgotPassword'}} item" href="{{pathFor 'signIn'}}">Sign in</a>
+    {{/if}}
+</template>
