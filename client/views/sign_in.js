@@ -15,10 +15,11 @@ Template.signIn.events({
       Session.set('password', undefined);
 
       if(error) {
-        alert(error);
+        Session.set('accountsPageError', error);
       } else if(Session.get('fromWhere')) {
 
       } else {
+        Session.set('accountsPageError', undefined);
         Router.go('/');
       }
     })

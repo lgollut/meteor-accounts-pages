@@ -1,5 +1,5 @@
 Template.forgotPassword.events({
-  'click #submitButton': function(e) {
+  'submit form': function(e) {
     e.preventDefault();
 
     isValid = $('.ui.form').form('validate form');
@@ -8,21 +8,26 @@ Template.forgotPassword.events({
       return;
     }
 
-    Session.set('login', $('input[name="login"]').val());
+    options = {
+      email: $('input[name="email"]').val()
+    };
 
-    Meteor.loginWithPassword(Session.get('login'), Session.get('password'), function(error) {
-      Session.set('password', undefined);
-
+    Accounts.forgotPassword(options, function(error) {
       if(error) {
-        alert(error);
-      } else if(Session.get('fromWhere')) {
-
+        Session.set('accountsPageError', error);
       } else {
-        Router.go('/');
+        Session.set('accountsPageError', undefined);
+        Session.set('accountsPagePasswordReseted', 'Email sended');
       }
-    })
+    });
   }
 })
+
+Template.forgotPassword.helpers({
+  passwordReseted: function() {
+    return Session.get('accountsPagePasswordReseted');
+  }
+});
 
 Template.forgotPassword.rendered = function() {
 
@@ -40,6 +45,7 @@ Template.forgotPassword.rendered = function() {
       ]
     }
   }, {
+    keyboardShortcuts: false,
     inline: true,
     on: 'blur'
   });

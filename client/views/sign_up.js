@@ -17,10 +17,10 @@ Template.signUp.events({
 
     Accounts.createUser(userInfo, function(error) {
       if(error) {
-        alert(error);
+        Session.set('accountsPageError', error);
         return;
       };
-
+      Session.set('accountsPageError', undefined);
       Router.go('home');
     });
   }
