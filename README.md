@@ -1,4 +1,3 @@
-meteor-accounts-pages
-=====================
+#meteor-accounts-pages
 
-Meteor smart package for full authentication pages styled with Semantic UI
+A meteorite package giving you full page login. Use Iron-router form routing and Semantic-UI for styling.

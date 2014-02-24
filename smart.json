@@ -1,9 +1,12 @@
 {
   "name": "accounts-pages",
-  "description": "REPLACEME - What does this package (or the original one you're wrapping) do?",
-  "homepage": "",
-  "author": "Your Name <your@email> (http://yoursite)",
-  "version": "0.0.1",
-  "git": "",
-  "packages": {}
+  "description": "A meteorite package giving you full page login. Use Iron-router form routing and Semantic-UI for styling.",
+  "homepage": "https://github.com/lgollut/meteor-accounts-pages",
+  "author": "Louis Gollut",
+  "version": "0.1.0",
+  "git": "https://github.com/lgollut/meteor-accounts-pages.git",
+  "packages": {
+    "iron-router": "0.6.4",
+    "semantic-ui-less": "0.13.0"
+  }
 }
