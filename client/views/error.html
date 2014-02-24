@@ -1,0 +1,15 @@
+<template name="accountsPageError">
+    {{#if getError}}
+        <div class="column"></div>
+        <div class="column">
+            <div class="ui icon error message">
+                <i class="close icon"></i>
+                <div class="header">
+                    An error occured !
+                </div>
+                <p>{{getError}}</p>
+            </div>
+        </div>
+        <div class="column"></div>
+    {{/if}}
+</template>
