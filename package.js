@@ -16,11 +16,20 @@ Package.on_use(function (api, where) {
     'client/views/account_button.js',
     'client/views/sign_in.html',
     'client/views/sign_in.js',
+    'client/views/sign_up.html',
+    'client/views/sign_up.js',
     'client/views/forgot_password.html',
     'client/views/forgot_password.js',
-    'client/views/sign_up.html',
-    'client/views/sign_up.js'
+    'client/views/reset_password.html',
+    'client/views/reset_password.js',
+    'client/views/error.html',
+    'client/views/error.js'
   ], 'client');
+
+  // server
+  api.add_files([
+    'server/startup.js'
+  ], 'server');
 
   // client and server
   api.export('AccountsPages', ['client', 'server']);
