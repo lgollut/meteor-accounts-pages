@@ -1,58 +1,28 @@
-Template.signIn.events({
-  'submit form': function(e) {
-    e.preventDefault();
+Template.signIn.helpers({
+  signInForm: function() {
 
-    isValid = $('.ui.form').form('validate form');
+    signInAutoForm = new AutoForm(signInSchema);
 
-    if(!isValid) {
-      return false;
-    }
+    signInAutoForm.hooks({
+      onSubmit: function(doc) {
 
-    Session.set('login', $('input[name="login"]').val());
-    Session.set('password', $('input[name="password"]').val());
+        Meteor.loginWithPassword(doc.username, doc.password, function(error) {
 
-    Meteor.loginWithPassword(Session.get('login'), Session.get('password'), function(error) {
-      Session.set('password', undefined);
+          if(error) {
+            Session.set('accountsPageError', error);
+          } else if(Session.get('fromWhere')) {
+            Session.set('accountsPageError', undefined);
+            Router.go(Session.get('fromWhere'));
+          } else {
+            Session.set('accountsPageError', undefined);
+            Router.go('/');
+          }
+        })
 
-      if(error) {
-        Session.set('accountsPageError', error);
-      } else if(Session.get('fromWhere')) {
-
-      } else {
-        Session.set('accountsPageError', undefined);
-        Router.go('/');
+        return false;
       }
-    })
+    });
+
+    return signInAutoForm;
   }
-})
-
-Template.signIn.rendered = function() {
-
-  $('.ui.form').form({
-    login: {
-      identifier: 'login',
-      rules: [
-        {
-          type: 'empty',
-          prompt : 'You must enter your login'
-        }
-      ]
-    },
-    password : {
-      identifier: 'password',
-      rules: [
-        {
-          type: 'empty',
-          prompt: 'You must enter your password'
-        },{
-          type: 'length[6]',
-          prompt: 'Your password must be at least 6 characters'
-        }
-      ]
-    }
-  }, {
-    keyboardShortcuts: false,
-    inline: true,
-    on: 'blur'
-  });
-}
+});

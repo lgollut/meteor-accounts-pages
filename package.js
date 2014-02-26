@@ -1,14 +1,14 @@
 Package.describe({
-  summary: "Meteor smart package for full authentication pages styled with Semantic UI"
+  summary: "Meteor smart package for full authentication pages styled with Bootstrap 3"
 });
 
 Package.on_use(function (api, where) {
 
   // client
   api.use([
+    'templating',
     'handlebars',
-    'less',
-    'templating'
+    'less'
     ], 'client');
 
   api.add_files([
@@ -23,18 +23,34 @@ Package.on_use(function (api, where) {
     'client/views/reset_password.html',
     'client/views/reset_password.js',
     'client/views/error.html',
-    'client/views/error.js'
+    'client/views/error.js',
+    'client/views/account_settings.html',
+    'client/views/account_settings.js',
+    'client/views/user_profile.html'
   ], 'client');
 
   // server
   api.add_files([
-    'server/startup.js'
+    'server/startup.js',
+    'server/methods.js'
   ], 'server');
 
   // client and server
   api.export('AccountsPages', ['client', 'server']);
-  api.use('iron-router', ['client', 'server']);
-  api.add_files('lib/router.js', ['client', 'server']);
+
+  api.use([
+    'iron-router',
+    'autoform',
+    'simple-schema',
+    'accounts-password',
+    'check'
+  ], ['client', 'server']);
+
+  api.add_files([
+    'lib/startup.js',
+    'lib/router.js',
+    'lib/schema_user.js'
+  ], ['client', 'server']);
 
 });
 

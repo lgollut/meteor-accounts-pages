@@ -1,7 +1,14 @@
 Template.pageAccountButton.getuser = function () {
   user = Meteor.user();
   return user.username;
-}
+};
+
+Template.pageAccountButton.events({
+  'click #signInLink': function() {
+    currentRoute = Router.current().route.name;
+    Session.set('fromWhere', currentRoute);
+  }
+});
 
 Template.pageAccountButton.helpers({
   activeRouteClass: function(/* route names */) {
@@ -13,9 +20,9 @@ Template.pageAccountButton.helpers({
     });
 
     return active && 'active';
+  },
+
+  getUserId: function() {
+    return {id:Meteor.userId()};
   }
 });
-
-Template.pageAccountButton.rendered = function() {
-  $('.ui.dropdown').dropdown();
-}

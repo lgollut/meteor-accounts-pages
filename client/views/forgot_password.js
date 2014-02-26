@@ -1,52 +1,32 @@
-Template.forgotPassword.events({
-  'submit form': function(e) {
-    e.preventDefault();
+Template.forgotPassword.helpers({
+  forgetPwdForm: function() {
 
-    isValid = $('.ui.form').form('validate form');
+    forgetPwdAutoForm = new AutoForm(forgetPwdSchema);
 
-    if(!isValid) {
-      return;
-    }
+    forgetPwdAutoForm.hooks({
+      onSubmit: function(doc) {
 
-    options = {
-      email: $('input[name="email"]').val()
-    };
+        options = {
+          email: doc.email
+        };
 
-    Accounts.forgotPassword(options, function(error) {
-      if(error) {
-        Session.set('accountsPageError', error);
-      } else {
-        Session.set('accountsPageError', undefined);
-        Session.set('accountsPagePasswordReseted', 'Email sended');
+        Accounts.forgotPassword(options, function(error) {
+          if(error) {
+            Session.set('accountsPageError', error);
+          } else {
+            Session.set('accountsPageError', undefined);
+            Session.set('accountsPagePasswordReseted', doc.email);
+          }
+        });
+
+        return false;
       }
     });
-  }
-})
 
-Template.forgotPassword.helpers({
+    return forgetPwdAutoForm;
+  },
+
   passwordReseted: function() {
     return Session.get('accountsPagePasswordReseted');
   }
 });
-
-Template.forgotPassword.rendered = function() {
-
-  $('.ui.form').form({
-    email: {
-      identifier: 'email',
-      rules: [
-        {
-          type: 'empty',
-          prompt : 'You must enter your email address'
-        }, {
-          type: 'email',
-          prompt: 'You must enter a valid email address'
-        }
-      ]
-    }
-  }, {
-    keyboardShortcuts: false,
-    inline: true,
-    on: 'blur'
-  });
-}

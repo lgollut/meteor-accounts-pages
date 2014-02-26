@@ -1,38 +1,57 @@
 <template name="signUp">
-    <div class="three column stackable ui grid">
-        {{> accountsPageError}}
-        <div class="column"></div>
-        <div class="column">
-            <form class="ui form segment">
-                <h3 class="ui dividing header">Create new Login</h3>
-                <div class="field">
-                    <div class="left labeled ui icon input">
-                        <input id="username" name="username" type="text" placeholder="Your user name" />
-                        <i class="user icon"></i>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="left labeled ui icon input">
-                        <input id="email" name="email" type="email" placeholder="Your email address" />
-                        <i class="mail icon"></i>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="left labeled ui icon input">
-                        <input id="password" name="password" type="password" placeholder="Your password" />
-                        <i class="lock icon"></i>
-                    </div>
-                </div>
-                <div class="field">
-                    <button type="submit" class="ui blue fluid button">
-                        <i class="plus icon"></i>Sign up
-                    </button>
-                </div>
-                <div class="field">
-                    <a class="fluid ui button" href="{{pathFor 'signIn'}}">Return to sign in page</a>
-                </div>
-            </form>
+  {{> accountsPageError}}
+  <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Sign Up informations
+          <div class="divider"></div>
         </div>
-        <div class="column"></div>
-    </div>
+        <div class="panel-body">
+          {{#autoForm schema=signUpForm id='signUp'}}
+            <fieldset>
+              <div class='form-group{{#if afFieldIsInvalid 'username'}} has-error{{/if}}'>
+                {{!afFieldLabel 'username'}}
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                  {{afFieldInput 'username' placeholder='Your username'}}
+                </div>
+                {{#if afFieldIsInvalid 'username'}}
+                  <span class='help-block'>{{afFieldMessage 'username'}}</span>
+                {{/if}}
+              </div>
+
+              <div class='form-group{{#if afFieldIsInvalid 'email'}} has-error{{/if}}'>
+                {{!afFieldLabel 'email'}}
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+                  {{afFieldInput 'email' placeholder='Your email'}}
+                </div>
+                {{#if afFieldIsInvalid 'email'}}
+                  <span class='help-block'>{{afFieldMessage 'email'}}</span>
+                {{/if}}
+              </div>
+
+              <div class='form-group{{#if afFieldIsInvalid 'password'}} has-error{{/if}}'>
+                {{!afFieldLabel 'password'}}
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+                  {{afFieldInput 'password' type='password' placeholder='Your password'}}
+                </div>
+                {{#if afFieldIsInvalid 'password'}}
+                  <span class='help-block'>{{afFieldMessage 'password'}}</span>
+                {{/if}}
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-info btn-block">
+                    <i class="fa fa-plus fa-fw"></i>&nbsp;Sign up
+                </button>
+              </div>
+              <a class="btn btn-default btn-block" href="{{pathFor 'signIn'}}">
+                  <i class="fa fa-sign-in fa-fw"></i>&nbsp;Sign In form
+              </a>
+            </fieldset>
+          {{/autoForm}}
+        </div>
+      </div>
+  </div>
 </template>
