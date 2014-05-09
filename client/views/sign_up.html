@@ -4,41 +4,41 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           Sign Up informations
-          <div class="divider"></div>
+          <hr />
         </div>
         <div class="panel-body">
-          {{#autoForm schema=signUpForm id='signUp'}}
+          {{#autoForm schema=signUpFormSchema id='signUp'}}
             <fieldset>
-              <div class='form-group{{#if afFieldIsInvalid 'username'}} has-error{{/if}}'>
+              <div class='form-group{{#if afFieldIsInvalid name='username'}} has-error{{/if}}'>
                 {{!afFieldLabel 'username'}}
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                  {{afFieldInput 'username' placeholder='Your username'}}
+                  {{> afFieldInput name='username' placeholder='Your username' autofocus=''}}
                 </div>
-                {{#if afFieldIsInvalid 'username'}}
-                  <span class='help-block'>{{afFieldMessage 'username'}}</span>
+                {{#if afFieldIsInvalid name='username'}}
+                  <span class='help-block'>{{afFieldMessage name='username'}}</span>
                 {{/if}}
               </div>
 
-              <div class='form-group{{#if afFieldIsInvalid 'email'}} has-error{{/if}}'>
+              <div class='form-group{{#if afFieldIsInvalid name='email'}} has-error{{/if}}'>
                 {{!afFieldLabel 'email'}}
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-                  {{afFieldInput 'email' placeholder='Your email'}}
+                  {{> afFieldInput name='email' placeholder='Your email'}}
                 </div>
-                {{#if afFieldIsInvalid 'email'}}
-                  <span class='help-block'>{{afFieldMessage 'email'}}</span>
+                {{#if afFieldIsInvalid name='email'}}
+                  <span class='help-block'>{{afFieldMessage name='email'}}</span>
                 {{/if}}
               </div>
 
-              <div class='form-group{{#if afFieldIsInvalid 'password'}} has-error{{/if}}'>
+              <div class='form-group{{#if afFieldIsInvalid name='password'}} has-error{{/if}}'>
                 {{!afFieldLabel 'password'}}
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-                  {{afFieldInput 'password' type='password' placeholder='Your password'}}
+                  {{> afFieldInput name='password' type='password' placeholder='Your password'}}
                 </div>
-                {{#if afFieldIsInvalid 'password'}}
-                  <span class='help-block'>{{afFieldMessage 'password'}}</span>
+                {{#if afFieldIsInvalid name='password'}}
+                  <span class='help-block'>{{afFieldMessage name='password'}}</span>
                 {{/if}}
               </div>
               <div class="form-group">

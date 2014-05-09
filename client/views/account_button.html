@@ -1,15 +1,13 @@
 <template name="pageAccountButton">
-  <li class="dropdown">
+  <li class="dropdown {{activeRouteClass 'accountSettings' 'user'}}">
     {{#if currentUser}}
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="icon user"></i>
         {{getuser}} <b class="caret"></b>
       </a>
       <ul class="dropdown-menu">
-        {{#with getUserId}}
-          <li><a href="{{pathFor 'user'}}"><i class="edit icon"></i> Edit Profile</a></li>
-          <li><a href="{{pathFor 'accountSettings'}}"><i class="settings icon"></i> Account Settings</a></li>
-        {{/with}}
+        <li class="{{activeRouteClass 'user'}}"><a href="{{profileLink}}"><i class="edit icon"></i> Edit Profile</a></li>
+        <li class="{{activeRouteClass 'accountSettings'}}"><a href="{{pathFor 'accountSettings'}}"><i class="settings icon"></i> Account Settings</a></li>
         <li class="divider"></li>
         <li><a href="{{pathFor 'signOut'}}"><i class="sign out icon"></i> Sign out</a></li>
       </ul>

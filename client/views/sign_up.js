@@ -1,25 +1,25 @@
 Template.signUp.helpers({
-  signUpForm: function() {
+  signUpFormSchema: function() {
+    return signUpSchema;
+  }
+});
 
-    signUpAutoForm = new AutoForm(signUpSchema);
+AutoForm.hooks({
+  signUp: {
+    onSubmit: function(doc) {
 
-    signUpAutoForm.hooks({
-      onSubmit: function(doc) {
+      Accounts.createUser(doc, function(error) {
+        if(error) {
+          console.log(error);
+          Session.set('accountsPageError', error);
+          return;
+        };
 
-        Accounts.createUser(doc, function(error) {
-          if(error) {
-            Session.set('accountsPageError', error);
-            return;
-          };
+        Session.set('accountsPageError', undefined);
+        Router.go('home');
+      });
 
-          Session.set('accountsPageError', undefined);
-          Router.go('home');
-        });
-
-        return false;
-      }
-    });
-
-    return signUpAutoForm;
+      return false;
+    }
   }
 });

@@ -1,6 +1,15 @@
 Template.pageAccountButton.getuser = function () {
   user = Meteor.user();
-  return user.username;
+
+  displayName = user.username;
+
+  if(user.profile && user.profile.givenName) {
+    displayName = user.profile.givenName;
+    if(user.profile.familyName) {
+      displayName += ' ' + user.profile.familyName;
+    }
+  }
+  return displayName;
 };
 
 Template.pageAccountButton.events({
@@ -16,13 +25,15 @@ Template.pageAccountButton.helpers({
     args.pop();
 
     var active = _.any(args, function(name) {
-      return Router.current().route.name === name
+      if(Router.current()) {
+        return Router.current().route.name === name;
+      }
     });
 
     return active && 'active';
   },
 
-  getUserId: function() {
-    return {id:Meteor.userId()};
+  profileLink: function() {
+    return Router.routes['user'].path({id: Meteor.userId()});
   }
 });

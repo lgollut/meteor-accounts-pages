@@ -6,8 +6,9 @@ Package.on_use(function (api, where) {
 
   // client
   api.use([
+    'ui',
     'templating',
-    'handlebars',
+    'spacebars',
     'less'
     ], 'client');
 
@@ -26,13 +27,14 @@ Package.on_use(function (api, where) {
     'client/views/error.js',
     'client/views/account_settings.html',
     'client/views/account_settings.js',
-    'client/views/user_profile.html'
+    'client/views/user_profile.html',
+    'client/views/user_profile.js',
+    'client/views/accounts_pages_layout.html'
   ], 'client');
 
   // server
   api.add_files([
-    'server/startup.js',
-    'server/methods.js'
+    'server/startup.js'
   ], 'server');
 
   // client and server
@@ -42,8 +44,10 @@ Package.on_use(function (api, where) {
     'iron-router',
     'autoform',
     'simple-schema',
+    'accounts-base',
     'accounts-password',
-    'check'
+    'check',
+    'moment'
   ], ['client', 'server']);
 
   api.add_files([

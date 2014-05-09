@@ -1,3 +1,65 @@
 <template name="userProfile">
-
+  {{#if currentUser}}
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="col-sm-4 text-center">
+          <img src="/userImage.jpg" class="img-profile img-rounded" alt="User profile image">
+        </div>
+        <div class="col-sm-8 text-left">
+          <h4 class="profile-name">{{givenName}} {{familyName}}<br /><small>{{jobTitle}}</small></h4>
+          <hr />
+          <p>{{#if inlineAddress}}<i class="fa fa-map-marker fa-fw"></i>&nbsp;{{inlineAddress}}{{/if}}</p>
+          <p>{{#if birthDate}}<i class="fa fa-gift fa-fw"></i>&nbsp;{{birthDate}}{{/if}}</p>
+          <p><a id="growlWarning" class="btn btn-warning btn-sm" href="">New notification</a>&nbsp;<a id="growlDanger" class="btn btn-danger btn-sm" href="">New notification</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12"><hr /></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 text-center">
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a href="" data-target="#personal" data-toggle="tab">Personal informations</a></li>
+          <li><a href="" data-target="#postal" data-toggle="tab">Postal Address</a></li>
+        </ul>
+        <hr />
+      </div>
+      <div class="col-sm-8 vertical-divider">
+        {{#autoForm schema=profileFormSchema doc=userProfile validation="blur" id="profileForm"}}
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="personal">
+            <fieldset>
+              {{> afQuickField name='gender' options=genderOptions}}
+              {{> afQuickField name='givenName'}}
+              {{> afQuickField name='familyName'}}
+              {{> afQuickField name='jobTitle'}}
+              {{> afQuickField name='birthDate' type="text" class="date"}}
+              {{> afQuickField name='nationality'}}
+              {{> afQuickField name='email'}}
+              {{> afQuickField name='telephone'}}
+            </fieldset>
+          </div>
+          <div class="tab-pane fade" id="postal">
+            <fieldset>
+              {{> afQuickField name='address.streetAddress'}}
+              {{> afQuickField name='address.postOfficeBoxNumber'}}
+              {{> afQuickField name='address.postalCode'}}
+              {{> afQuickField name='address.addressLocality'}}
+              {{> afQuickField name='address.addressRegion'}}
+              {{> afQuickField name='address.addressCountry'}}
+            </fieldset>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success">
+            <i class="fa fa-floppy-o fa-fw"></i>&nbsp;Save
+          </button>
+        </div>
+        {{/autoForm}}
+      </div>
+    </div>
+  </div>
+  {{/if}}
 </template>

@@ -1,28 +1,27 @@
 Template.signIn.helpers({
-  signInForm: function() {
+  signInFormSchema: function() {
+    return signInSchema;
+  }
+});
 
-    signInAutoForm = new AutoForm(signInSchema);
+AutoForm.hooks({
+  signIn: {
+    onSubmit: function(doc) {
 
-    signInAutoForm.hooks({
-      onSubmit: function(doc) {
+      Meteor.loginWithPassword(doc.username, doc.password, function(error) {
 
-        Meteor.loginWithPassword(doc.username, doc.password, function(error) {
+        if(error) {
+          Session.set('accountsPageError', error);
+        } else if(Session.get('fromWhere')) {
+          Session.set('accountsPageError', undefined);
+          Router.go(Session.get('fromWhere'));
+        } else {
+          Session.set('accountsPageError', undefined);
+          Router.go('/');
+        }
+      })
 
-          if(error) {
-            Session.set('accountsPageError', error);
-          } else if(Session.get('fromWhere')) {
-            Session.set('accountsPageError', undefined);
-            Router.go(Session.get('fromWhere'));
-          } else {
-            Session.set('accountsPageError', undefined);
-            Router.go('/');
-          }
-        })
-
-        return false;
-      }
-    });
-
-    return signInAutoForm;
+      return false;
+    }
   }
 });
