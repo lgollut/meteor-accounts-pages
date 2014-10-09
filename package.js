@@ -1,63 +1,46 @@
 Package.describe({
-  summary: "Meteor smart package for full authentication pages styled with Bootstrap 3"
+  summary: "Meteor smart package for full authentication pages styled with Bootstrap 3",
+  version: "0.1.0",
+  git: "https://github.com/lgollut/meteor-accounts-pages.git"
 });
 
-Package.on_use(function (api, where) {
+Package.onUse(function (api) {
 
-  // client
-  api.use([
-    'ui',
-    'templating',
-    'spacebars',
-    'less'
-    ], 'client');
+  api.use('blaze', 'client');
+  api.use('templating', 'client');
+  api.use('spacebars', 'client');
+  api.use('less', 'client');
 
-  api.add_files([
-    'client/views/account_button.html',
-    'client/views/account_button.js',
-    'client/views/sign_in.html',
-    'client/views/sign_in.js',
-    'client/views/sign_up.html',
-    'client/views/sign_up.js',
-    'client/views/forgot_password.html',
-    'client/views/forgot_password.js',
-    'client/views/reset_password.html',
-    'client/views/reset_password.js',
-    'client/views/error.html',
-    'client/views/error.js',
-    'client/views/account_settings.html',
-    'client/views/account_settings.js',
-    'client/views/user_profile.html',
-    'client/views/user_profile.js',
-    'client/views/accounts_pages_layout.html'
-  ], 'client');
+  api.use('iron:router', ['client', 'server']);
+  api.use('aldeed:autoform', ['client', 'server']);
+  api.use('aldeed:simple-schema', ['client', 'server']);
+  api.use('mrt:moment', ['client', 'server']);
+  api.use('accounts-base', ['client', 'server']);
+  api.use('accounts-password', ['client', 'server']);
+  api.use('check', ['client', 'server']);
+  api.use('underscore', ['client', 'server']);
 
-  // server
-  api.add_files([
-    'server/startup.js'
-  ], 'server');
+  api.addFiles('client/views/account_button.html', 'client');
+  api.addFiles('client/views/account_button.js', 'client');
+  api.addFiles('client/views/sign_in.html', 'client');
+  api.addFiles('client/views/sign_in.js', 'client');
+  api.addFiles('client/views/sign_up.html', 'client');
+  api.addFiles('client/views/sign_up.js', 'client');
+  api.addFiles('client/views/forgot_password.html', 'client');
+  api.addFiles('client/views/forgot_password.js', 'client');
+  api.addFiles('client/views/reset_password.html', 'client');
+  api.addFiles('client/views/reset_password.js', 'client');
+  api.addFiles('client/views/error.html', 'client');
+  api.addFiles('client/views/error.js', 'client');
 
-  // client and server
+  api.addFiles('lib/startup.js', ['client', 'server']);
+  api.addFiles('lib/router.js', ['client', 'server']);
+  api.addFiles('schemas/accounts.js', ['client', 'server']);
+
   api.export('AccountsPages', ['client', 'server']);
 
-  api.use([
-    'iron-router',
-    'autoform',
-    'simple-schema',
-    'accounts-base',
-    'accounts-password',
-    'check',
-    'moment'
-  ], ['client', 'server']);
-
-  api.add_files([
-    'lib/startup.js',
-    'lib/router.js',
-    'lib/schema_user.js'
-  ], ['client', 'server']);
-
 });
 
-Package.on_test(function (api) {
+Package.onTest(function (api) {
 
 });
