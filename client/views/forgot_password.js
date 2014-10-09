@@ -2,9 +2,8 @@ Template.forgotPassword.helpers({
   forgetPwdFormSchema: function() {
     return forgetPwdSchema;
   },
-
-  passwordReseted: function() {
-    return Session.get('accountsPagePasswordReseted');
+  resetMailSended: function() {
+    return Session.get('accountsPageResetMailSended');
   }
 });
 
@@ -21,9 +20,12 @@ AutoForm.hooks({
           Session.set('accountsPageError', error);
         } else {
           Session.set('accountsPageError', undefined);
-          Session.set('accountsPagePasswordReseted', doc.email);
+          Session.set('accountsPageResetMailSended', doc.email);
         }
       });
+
+      this.resetForm();
+      this.done();
 
       return false;
     }

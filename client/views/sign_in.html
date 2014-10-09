@@ -1,51 +1,39 @@
 <template name="signIn">
   {{> accountsPageError}}
-  <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Sign in informations
-          <hr />
+  <div class="accounts-pages-form">
+    <h1 class="title">crpm</h1>
+    <span class="subtitle">Formations en management<br />et ressources humaines</span>
+    {{#autoForm schema=signInFormSchema id='signIn'}}
+      <fieldset>
+        <div class='form-group{{#if afFieldIsInvalid name='username'}} has-error{{/if}}'>
+          {{!afFieldLabel 'username'}}
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+            {{> afFieldInput name='username' placeholder="schemaLabel" autofocus=''}}
+          </div>
+          {{#if afFieldIsInvalid name='username'}}
+            <span class='help-block'>{{afFieldMessage name='username'}}</span>
+          {{/if}}
         </div>
-        <div class="panel-body">
-          {{#autoForm schema=signInFormSchema id='signIn'}}
-            <fieldset>
-              <div class='form-group{{#if afFieldIsInvalid name='username'}} has-error{{/if}}'>
-                {{!afFieldLabel 'username'}}
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                  {{> afFieldInput name='username' placeholder='Your username' autofocus=''}}
-                </div>
-                {{#if afFieldIsInvalid name='username'}}
-                  <span class='help-block'>{{afFieldMessage 'username'}}</span>
-                {{/if}}
-              </div>
-
-              <div class='form-group{{#if afFieldIsInvalid name='password'}} has-error{{/if}}'>
-                {{!afFieldLabel 'password'}}
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-                  {{> afFieldInput name='password' type='password' placeholder='Your password'}}
-                </div>
-                {{#if afFieldIsInvalid name='password'}}
-                  <span class='help-block'>{{afFieldMessage 'password'}}</span>
-                {{/if}}
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-success btn-block">
-                    <i class="fa fa-sign-in fa-fw"></i>&nbsp;Sign in
-                </button>
-              </div>
-              <div class="form-group">
-                <a class="btn btn-default btn-block" href="{{pathFor 'signUp'}}">
-                    <i class="fa fa-plus fa-fw"></i>&nbsp;Sign up form
-                </a>
-              </div>
-              <div class="text-center">
-                <a href="{{pathFor 'forgotPassword'}}">Did you forget your password ?</a>
-              </div>
-            </fieldset>
-          {{/autoForm}}
+        <div class='form-group{{#if afFieldIsInvalid name='password'}} has-error{{/if}}'>
+          {{!afFieldLabel 'password'}}
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+            {{> afFieldInput name='password' type='password' placeholder="schemaLabel"}}
+          </div>
+          {{#if afFieldIsInvalid name='password'}}
+            <span class='help-block'>{{afFieldMessage name='password'}}</span>
+          {{/if}}
         </div>
-      </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default btn-block" disabled="{{#if loggingIn}}true{{/if}}">
+              {{#if loggingIn}}In process{{else}}Sign in{{/if}}
+          </button>
+        </div>
+        <div class="text-center form-link">
+          <a href="{{pathFor 'forgotPassword'}}">Password forgotten</a>
+        </div>
+      </fieldset>
+    {{/autoForm}}
   </div>
 </template>
