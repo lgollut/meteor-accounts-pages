@@ -7,8 +7,7 @@ Template.signIn.helpers({
 AutoForm.hooks({
   signIn: {
     onSubmit: function(doc) {
-
-      Meteor.loginWithPassword(doc.username, doc.password, function(error) {
+      Meteor.loginWithPassword(doc.email, doc.password, function(error) {
         if(error) {
           Session.set('accountsPageError', error);
         } else {

@@ -13,7 +13,7 @@ AutoForm.hooks({
           console.log(error);
           Session.set('accountsPageError', error);
           return;
-        };
+        }
 
         Session.set('accountsPageError', undefined);
         Router.go('home');

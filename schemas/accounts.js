@@ -1,7 +1,14 @@
 signInSchema = new SimpleSchema({
-  username: {
+  email: {
     type: String,
-    label: 'Username',
+    label: 'Email addresse',
+    autoform: {
+      class: 'lowercase',
+      autocomplete: 'off',
+      spellcheck: 'false',
+      autocapitalize: 'off',
+      autocorrect: "off"
+    }
   },
   password: {
     type: String,
@@ -49,84 +56,3 @@ resetPwdSchema = new SimpleSchema({
     label: 'Confirm your new password'
   }
 });
-
-// postalAddressSchema = new SimpleSchema({
-//   addressCountry: {
-//     type: String,
-//     label: 'Country',
-//     optional: true
-//   },
-//   addressLocality: {
-//     type: String,
-//     label: 'Locality',
-//     optional: true
-//   },
-//   addressRegion: {
-//     type: String,
-//     label: 'Region',
-//     optional: true
-//   },
-//   postalCode: {
-//     type: String,
-//     label: 'Postal code',
-//     optional: true
-//   },
-//   postOfficeBoxNumber: {
-//     type: String,
-//     label: 'PO box number',
-//     optional: true
-//   },
-//   streetAddress: {
-//     type: String,
-//     label: 'Street',
-//     optional: true
-//   }
-// });
-//
-// userProfileSchema = new SimpleSchema({
-//   address: {
-//     type: postalAddressSchema,
-//     optional: true
-//   },
-//   birthDate: {
-//     type: Date,
-//     label: 'Date of birth',
-//     optional: true
-//   },
-//   familyName: {
-//     type: String,
-//     label: 'Surname',
-//     optional: true
-//   },
-//   email: {
-//     type: String,
-//     regEx: SimpleSchema.RegEx.Email,
-//     label: 'Email',
-//     optional: true
-//   },
-//   gender: {
-//     type: String,
-//     label: 'Gender',
-//     optional: true
-//   },
-//   givenName: {
-//     type: String,
-//     label: 'Name',
-//     optional: true
-//   },
-//   jobTitle: {
-//     type: String,
-//     label: 'Job title',
-//     optional: true
-//   },
-//   nationality: {
-//     type: String,
-//     label: 'Nationality',
-//     optional: true
-//   },
-//   telephone: {
-//     type: String,
-//     label: 'Telephone',
-//     optional: true
-//   }
-// });

@@ -28,4 +28,4 @@ AutoForm.hooks({
       return false;
     }
   }
-})
+});

@@ -5,14 +5,14 @@
     <span class="subtitle">Formations en management<br />et ressources humaines</span>
     {{#autoForm schema=signInFormSchema id='signIn'}}
       <fieldset>
-        <div class='form-group{{#if afFieldIsInvalid name='username'}} has-error{{/if}}'>
-          {{!afFieldLabel 'username'}}
+        <div class='form-group{{#if afFieldIsInvalid name='email'}} has-error{{/if}}'>
+          {{!afFieldLabel 'email'}}
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-            {{> afFieldInput name='username' placeholder="schemaLabel" autofocus=''}}
+            <span class="input-group-addon"><i class="fa fa-at fa-fw"></i></span>
+            {{> afFieldInput name='email' placeholder="schemaLabel" autofocus=''}}
           </div>
-          {{#if afFieldIsInvalid name='username'}}
-            <span class='help-block'>{{afFieldMessage name='username'}}</span>
+          {{#if afFieldIsInvalid name='email'}}
+            <span class='help-block'>{{afFieldMessage name='email'}}</span>
           {{/if}}
         </div>
         <div class='form-group{{#if afFieldIsInvalid name='password'}} has-error{{/if}}'>
