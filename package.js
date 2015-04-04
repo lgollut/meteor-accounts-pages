@@ -1,7 +1,7 @@
 Package.describe({
   name: "lgollut:accounts-pages",
-  version: "0.1.0",
-  summary: "Meteor smart package for full authentication pages styled with Bootstrap 3",
+  version: "0.2.0",
+  summary: "Meteor package for full authentication pages",
   git: "https://github.com/lgollut/meteor-accounts-pages.git",
   documentation: 'README.md'
 });
