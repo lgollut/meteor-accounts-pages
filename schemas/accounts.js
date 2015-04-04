@@ -1,50 +1,94 @@
 signInSchema = new SimpleSchema({
   email: {
     type: String,
-    label: 'Email addresse',
+    label: 'Email address',
+    regEx: SimpleSchema.RegEx.Email,
     autoform: {
-      class: 'lowercase',
-      autocomplete: 'off',
-      spellcheck: 'false',
-      autocapitalize: 'off',
-      autocorrect: "off"
+      afFieldInput: {
+        type: 'email',
+        autocomplete: 'off',
+        spellcheck: 'false',
+        autocapitalize: 'off',
+        autocorrect: "off"
+      }
     }
   },
   password: {
     type: String,
-    label: 'Password'
+    label: 'Password',
+    autoform: {
+      afFieldInput: {
+        type: 'password',
+        autocomplete: 'off',
+        spellcheck: 'false',
+        autocapitalize: 'off',
+        autocorrect: "off"
+      }
+    }
   }
 });
 
 signUpSchema = new SimpleSchema({
   username: {
     type: String,
-    label: 'Your username'
+    label: 'Your username',
+    autoform: {
+      afFieldInput: {
+        type: 'text',
+        autocomplete: 'off',
+        spellcheck: 'false',
+        autocapitalize: 'off',
+        autocorrect: "off"
+      }
+    }
   },
   email: {
     type: String,
     regEx: SimpleSchema.RegEx.Email,
-    label: 'Your email'
-  },
-  password: {
-    type: String,
-    label: 'Your password'
+    label: 'Your email',
+    autoform: {
+      afFieldInput: {
+        type: 'email',
+        autocomplete: 'off',
+        spellcheck: 'false',
+        autocapitalize: 'off',
+        autocorrect: "off"
+      }
+    }
   }
 });
 
-forgetPwdSchema = new SimpleSchema({
+forgotPasswordSchema = new SimpleSchema({
   email: {
     type: String,
     regEx: SimpleSchema.RegEx.Email,
-    label: 'Your email'
+    label: 'Your email',
+    autoform: {
+      afFieldInput: {
+        type: 'email',
+        autocomplete: 'off',
+        spellcheck: 'false',
+        autocapitalize: 'off',
+        autocorrect: "off"
+      }
+    }
   }
 });
 
-resetPwdSchema = new SimpleSchema({
+resetPasswordSchema = new SimpleSchema({
   password: {
     type: String,
     min: 6,
-    label: 'Your new password'
+    label: 'Your new password',
+    autoform: {
+      afFieldInput: {
+        type: 'password',
+        autocomplete: 'off',
+        spellcheck: 'false',
+        autocapitalize: 'off',
+        autocorrect: "off"
+      }
+    }
   },
   confirmPassword: {
     type: String,
@@ -53,6 +97,15 @@ resetPwdSchema = new SimpleSchema({
         return "passwordMismatch";
       }
     },
-    label: 'Confirm your new password'
+    label: 'Confirm your new password',
+    autoform: {
+      afFieldInput: {
+        type: 'password',
+        autocomplete: 'off',
+        spellcheck: 'false',
+        autocapitalize: 'off',
+        autocorrect: "off"
+      }
+    }
   }
 });

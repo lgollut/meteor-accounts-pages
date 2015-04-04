@@ -1,8 +1,66 @@
-#meteor-accounts-pages
+# lgollut:accounts-pages
 
-A meteorite package giving you full page login.
+Encapsulate accounts administration logic into reusable components.
 
-* Use Iron-router form routing.
-* Bootstrap 3 for styling and presentation.
-* [AutoForm](https://github.com/aldeed/meteor-autoform) with [Collection2](https://github.com/aldeed/meteor-collection2) and [simple-schema](https://github.com/aldeed/meteor-simple-schema) for form rendering and validation.
+<!-- START doctoc -->
+<!-- END doctoc -->
 
+## Installation
+
+$ meteor add lgollut:accounts-pages
+
+## Usage
+
+accounts-pages give you access to 4 components. `apPage`, `apForm`, `apError` and `apButton`.
+
+### apPage
+
+`apPage` is the main component where you defined the page `type` you want to create.
+
+```html
+{{#apPage type="signIn"}}
+  <!-- Page content -->
+{{/apPage}}
+```
+
+### apForm
+
+`apForm` encapsulate the creation of the AutoForm element. The generated form attributes depend on the `type` attribute defined on `apPage` component.
+
+```html
+{{#apForm class='custom-form-class'}}
+
+  <!-- ... -->
+
+  {> afFormGroup name='customField'}}
+
+  <!-- ... -->
+
+{{/apForm}}
+```
+
+### Routing
+
+Out of the box, accounts-pages give you 7 routes you can use as these :
+
+```javascript
+/sign-in
+/sign-up
+/sign-out
+/forgot-password
+/reset-password/:resetToken
+/enroll-account/:enrollToken
+/verify-email/:verifyToken
+```
+
+If you want to configure these routes to fit your needs, just call the adequate iron:router plugin with options you want.
+
+```javascript
+Router.plugin('signIn', {
+  path: '/custom-sign-in-path',
+  template: 'customSignInTemplate',
+  controller: 'CustomController'
+});
+```
+
+There is one plugin per route : `signIn`, `signUp`, `signOut`, `forgotPassword`, `resetPassword`, `enrollAccount`, `verifyEmail`

@@ -9,6 +9,7 @@ Package.describe({
 Package.onUse(function (api) {
 
   api.use('blaze', 'client');
+  api.use('tracker', 'client');
   api.use('templating', 'client');
   api.use('spacebars', 'client');
   api.use('less', 'client');
@@ -22,24 +23,17 @@ Package.onUse(function (api) {
   api.use('aldeed:simple-schema', ['client', 'server']);
   api.use('momentjs:moment', ['client', 'server']);
 
-  api.addFiles('client/views/account_button.html', 'client');
-  api.addFiles('client/views/account_button.js', 'client');
-  api.addFiles('client/views/sign_in.html', 'client');
-  api.addFiles('client/views/sign_in.js', 'client');
-  api.addFiles('client/views/sign_up.html', 'client');
-  api.addFiles('client/views/sign_up.js', 'client');
-  api.addFiles('client/views/forgot_password.html', 'client');
-  api.addFiles('client/views/forgot_password.js', 'client');
-  api.addFiles('client/views/reset_password.html', 'client');
-  api.addFiles('client/views/reset_password.js', 'client');
-  api.addFiles('client/views/error.html', 'client');
-  api.addFiles('client/views/error.js', 'client');
+  api.addFiles('client/views/ap_button.html', 'client');
+  api.addFiles('client/views/ap_button.js', 'client');
+  api.addFiles('client/views/ap_page.html', 'client');
+  api.addFiles('client/views/ap_page.js', 'client');
+  api.addFiles('client/views/ap_form.html', 'client');
+  api.addFiles('client/views/ap_error.html', 'client');
+  api.addFiles('client/views/ap_error.js', 'client');
 
-  api.addFiles('lib/startup.js', ['client', 'server']);
-  api.addFiles('lib/router.js', ['client', 'server']);
   api.addFiles('schemas/accounts.js', ['client', 'server']);
-
-  api.export('AccountsPages', ['client', 'server']);
+  api.addFiles('schemas/config.js', ['client', 'server']);
+  api.addFiles('lib/router.js', ['client', 'server']);
 
 });
 

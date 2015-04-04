@@ -1,11 +1,11 @@
-Template.pageAccountButton.events({
+Template.apButton.events({
   'click #signInLink': function() {
     currentRoute = Router.current().route.name;
     Session.set('fromWhere', currentRoute);
   }
 });
 
-Template.pageAccountButton.helpers({
+Template.apButton.helpers({
   getuser: function () {
     user = Meteor.user();
 
@@ -38,6 +38,6 @@ Template.pageAccountButton.helpers({
   }
 });
 
-Template.pageAccountButton.rendered = function() {
+Template.apButton.rendered = function() {
   this.$('.dropdown-toggle').dropdown();
 };
