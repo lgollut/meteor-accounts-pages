@@ -4,7 +4,6 @@ Encapsulate accounts administration logic into reusable components.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -16,11 +15,13 @@ Encapsulate accounts administration logic into reusable components.
 
 ## Installation
 
+```
 $ meteor add lgollut:accounts-pages
+```
 
 ## Usage
 
-accounts-pages give you access to 4 components. `apPage`, `apForm`, `apError` and `apButton`.
+`accounts-pages` give you access to 4 components. `apPage`, `apForm`, `apError` and `apButton`.
 
 ### apPage
 
@@ -50,7 +51,7 @@ accounts-pages give you access to 4 components. `apPage`, `apForm`, `apError` an
 
 ### Routing
 
-Out of the box, accounts-pages give you 7 routes you can use as these :
+Out of the box, `accounts-pages` give you seven routes you can point to :
 
 ```javascript
 /sign-in
@@ -62,7 +63,7 @@ Out of the box, accounts-pages give you 7 routes you can use as these :
 /verify-email/:verifyToken
 ```
 
-If you want to configure these routes to fit your needs, just call the adequate iron:router plugin with options you want.
+If you want to configure these routes to fit your needs, just call the adequate `iron:router` plugin with options you want.
 
 ```javascript
 Router.plugin('signIn', {
